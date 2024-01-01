@@ -5,7 +5,7 @@
 package mobileplanmgmt;
 
 import mobileplanmgmt.domain.model.Customer;
-import mobileplanmgmt.application.service.impl.CustomerService;
+import mobileplanmgmt.domain.service.impl.CustomerService;
 
 /**
  *

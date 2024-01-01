@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mobileplanmgmt.application.service.impl;
+package mobileplanmgmt.domain.service.impl;
 
 import java.util.List;
 import mobileplanmgmt.domain.model.Customer;
-import mobileplanmgmt.application.service.EntityService;
+import mobileplanmgmt.domain.service.EntityService;
 import mobileplanmgmt.infrastructure.persistence.DatabaseOperations;
 
 /**
