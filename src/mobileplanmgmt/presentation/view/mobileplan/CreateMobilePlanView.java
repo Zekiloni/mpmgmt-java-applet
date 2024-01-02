@@ -4,16 +4,23 @@
  */
 package mobileplanmgmt.presentation.view.mobileplan;
 
+import mobileplanmgmt.domain.model.MobilePlan;
+import mobileplanmgmt.domain.model.MobilePlanCreate;
+import mobileplanmgmt.presentation.controller.MobilePlanController;
+
 /**
  *
  * @author Comp
  */
 public class CreateMobilePlanView extends javax.swing.JFrame {
 
+    private MobilePlanController mobilePlanController;
+    
     /**
      * Creates new form CreateMobilePlanView
      */
     public CreateMobilePlanView() {
+        mobilePlanController = new MobilePlanController();
         initComponents();
     }
 
@@ -26,40 +33,106 @@ public class CreateMobilePlanView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        cancel_creating_mobile_plan_button = new javax.swing.JButton();
+        create_mobile_plan_button = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        mobilePlanNameInput = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        mobilePlanDescInput = new javax.swing.JTextPane();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Back to main");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancel_creating_mobile_plan_button.setText("Cancel");
+        cancel_creating_mobile_plan_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                navigateToMain(evt);
+                navigateToMainActionPerformed(evt);
             }
         });
+
+        create_mobile_plan_button.setText("Create");
+        create_mobile_plan_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createMobilePlanActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Create a mobile plan");
+
+        jScrollPane1.setViewportView(mobilePlanDescInput);
+
+        jLabel2.setText("Description");
+
+        jLabel3.setText("Name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jButton1)
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cancel_creating_mobile_plan_button)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(create_mobile_plan_button)
+                        .addGap(22, 22, 22))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 162, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(mobilePlanNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jButton1)
-                .addContainerGap(254, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(5, 5, 5)
+                .addComponent(mobilePlanNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancel_creating_mobile_plan_button)
+                    .addComponent(create_mobile_plan_button))
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void navigateToMain(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_navigateToMain
+    private void navigateToMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_navigateToMainActionPerformed
         this.setVisible(false);
-    }//GEN-LAST:event_navigateToMain
+    }//GEN-LAST:event_navigateToMainActionPerformed
+
+    private void createMobilePlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createMobilePlanActionPerformed
+        MobilePlan mobilePlan = mobilePlanController.createMobilePlan(
+                MobilePlanCreate.builder()
+                        .name(mobilePlanNameInput.getText())
+                        .description(mobilePlanDescInput.getText())
+                        .dataLimit(1)
+                        .minutesLimit(1)
+                        .build()
+        );
+        
+        if (mobilePlan != null) {
+            navigateToMobilePlanSingleView(mobilePlan);
+        }
+    }//GEN-LAST:event_createMobilePlanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -97,6 +170,22 @@ public class CreateMobilePlanView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton cancel_creating_mobile_plan_button;
+    private javax.swing.JButton create_mobile_plan_button;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextPane mobilePlanDescInput;
+    private javax.swing.JTextField mobilePlanNameInput;
     // End of variables declaration//GEN-END:variables
+
+    private void navigateToMobilePlanSingleView(MobilePlan mobilePlan) {
+        this.setVisible(false);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SingleMobilePlanView(mobilePlan).setVisible(true);
+            }
+        });
+    }
 }
