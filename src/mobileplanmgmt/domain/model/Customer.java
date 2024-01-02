@@ -10,6 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -17,6 +21,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "customers")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = 1L;

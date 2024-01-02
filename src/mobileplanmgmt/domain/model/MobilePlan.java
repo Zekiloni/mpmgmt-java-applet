@@ -5,11 +5,13 @@
 package mobileplanmgmt.domain.model;
 
 import java.io.Serializable;
+import java.time.OffsetDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +22,7 @@ import lombok.NoArgsConstructor;
  * @author Comp
  */
 @Entity
+@Table(name = "mobile_plans")
 @Data
 @Builder
 @NoArgsConstructor
@@ -27,6 +30,7 @@ import lombok.NoArgsConstructor;
 public class MobilePlan implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -36,12 +40,15 @@ public class MobilePlan implements Serializable {
     
     private String description;
     
-    @Column(name = "data_limit")
+    @Column(name = "DATA_LIMIT")
     private int dataLimit;
     
-    @Column(name = "minutes_limit")
+    @Column(name = "MINUTES_LIMIT")
     private int minutesLimit;
     
-    @Column(name = "monthly_fee")
+    @Column(name = "MONTHLY_FEE")
     private Double monthlyFee;
+    
+    @Column(name = "CREATED_AT")
+    private OffsetDateTime createdAt;
 }

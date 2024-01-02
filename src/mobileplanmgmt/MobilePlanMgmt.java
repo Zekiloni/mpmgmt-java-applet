@@ -4,6 +4,8 @@
  */
 package mobileplanmgmt;
 
+import mobileplanmgmt.domain.model.Customer;
+import mobileplanmgmt.domain.service.impl.CustomerServiceImpl;
 import mobileplanmgmt.presentation.view.MainView;
 
 /**

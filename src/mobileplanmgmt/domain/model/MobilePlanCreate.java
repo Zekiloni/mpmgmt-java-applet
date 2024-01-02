@@ -4,6 +4,8 @@
  */
 package mobileplanmgmt.domain.model;
 
+import java.io.Serializable;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,8 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor
-public class MobilePlanCreate {
+@AllArgsConstructor
+public class MobilePlanCreate implements Serializable {
     private String name;
     private String description;
     private int dataLimit;

@@ -4,6 +4,7 @@
  */
 package mobileplanmgmt.domain.service.impl;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import mobileplanmgmt.domain.model.MobilePlan;
 import mobileplanmgmt.domain.model.MobilePlanCreate;
@@ -29,6 +30,7 @@ public class MobilePlanServiceImpl implements MobilePlanService {
                 .description(mobilePlanCreate.getDescription())
                 .dataLimit(mobilePlanCreate.getDataLimit())
                 .minutesLimit(mobilePlanCreate.getMinutesLimit())
+                .createdAt(OffsetDateTime.now())
                 .build();
         
         return this.databaseOperations.save(mobilePlan);
