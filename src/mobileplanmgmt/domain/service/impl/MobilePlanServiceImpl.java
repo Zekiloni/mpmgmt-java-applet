@@ -38,7 +38,7 @@ public class MobilePlanServiceImpl implements MobilePlanService {
 
     @Override
     public void delete(Long mobilePlanId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.databaseOperations.delete(MobilePlan.class, mobilePlanId);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class MobilePlanServiceImpl implements MobilePlanService {
 
     @Override
     public List<MobilePlan> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.databaseOperations.getAll(MobilePlan.class);
     }
 
 }

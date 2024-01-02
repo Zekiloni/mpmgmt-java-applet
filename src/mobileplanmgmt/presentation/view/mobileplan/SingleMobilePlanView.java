@@ -5,19 +5,25 @@
 package mobileplanmgmt.presentation.view.mobileplan;
 
 import mobileplanmgmt.domain.model.MobilePlan;
+import mobileplanmgmt.presentation.controller.MobilePlanController;
 
 /**
  *
- * @author Comp
+ * @author Zekiloni
  */
 public class SingleMobilePlanView extends javax.swing.JFrame {
 
+    private MobilePlanController mobilePlanController;
+    
     private MobilePlan mobilePlan;
+    
+    private boolean isEditingActive = false;
     
     /**
      * Creates new form SingleMobilePlanView
      */
-    public SingleMobilePlanView(MobilePlan mobilePlan) {
+    public SingleMobilePlanView(MobilePlanController mobilePlanController, MobilePlan mobilePlan) {
+        this.mobilePlanController = mobilePlanController;
         this.mobilePlan = mobilePlan;
         initComponents();
         load();
@@ -35,6 +41,7 @@ public class SingleMobilePlanView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         mobilePlanToStringOutput = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +58,15 @@ public class SingleMobilePlanView extends javax.swing.JFrame {
             }
         });
 
+        delete.setBackground(new java.awt.Color(176, 0, 1));
+        delete.setForeground(new java.awt.Color(255, 255, 255));
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,6 +74,7 @@ public class SingleMobilePlanView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(delete)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addContainerGap(34, Short.MAX_VALUE))
@@ -69,7 +86,9 @@ public class SingleMobilePlanView extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addComponent(delete)
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -79,8 +98,14 @@ public class SingleMobilePlanView extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_closeMobilePlanSingleActionPerformed
 
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        this.mobilePlanController.deleteMobilePlan(this.mobilePlan.getId());
+        this.setVisible(false);
+    }//GEN-LAST:event_deleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton delete;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea mobilePlanToStringOutput;

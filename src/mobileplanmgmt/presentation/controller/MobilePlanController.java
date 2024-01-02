@@ -4,6 +4,7 @@
  */
 package mobileplanmgmt.presentation.controller;
 
+import java.util.List;
 import mobileplanmgmt.domain.model.MobilePlan;
 import mobileplanmgmt.domain.model.MobilePlanCreate;
 import mobileplanmgmt.domain.service.impl.MobilePlanServiceImpl;
@@ -19,11 +20,19 @@ public class MobilePlanController {
         mobilePlanService = new MobilePlanServiceImpl();
     }
     
+    public List<MobilePlan> getAllMobilePlans() {
+        return this.mobilePlanService.getAll();
+    }
+    
     public MobilePlan createMobilePlan(MobilePlanCreate mobilePlanCreate) {
         try { 
             return mobilePlanService.create(mobilePlanCreate);
         } catch(RuntimeException exception) {
             return null;
         }        
+    }
+    
+    public void deleteMobilePlan(Long mobilePlanId) {
+        this.mobilePlanService.delete(mobilePlanId);
     }
 }

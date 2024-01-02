@@ -184,7 +184,7 @@ public class CreateMobilePlanView extends javax.swing.JFrame {
         this.setVisible(false);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SingleMobilePlanView(mobilePlan).setVisible(true);
+                new SingleMobilePlanView(mobilePlanController, mobilePlan).setVisible(true);
             }
         });
     }
