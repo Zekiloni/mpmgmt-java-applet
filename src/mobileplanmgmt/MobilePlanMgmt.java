@@ -4,8 +4,7 @@
  */
 package mobileplanmgmt;
 
-import mobileplanmgmt.domain.model.Customer;
-import mobileplanmgmt.domain.service.impl.CustomerService;
+import mobileplanmgmt.presentation.view.MainView;
 
 /**
  *
@@ -17,12 +16,9 @@ public class MobilePlanMgmt {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        
-        CustomerService customerService = new CustomerService();
-        Customer customer = new Customer();
-        
-        customerService.create(customer);
+         java.awt.EventQueue.invokeLater(() -> {
+            new MainView().setVisible(true);
+        });
     }
     
 }

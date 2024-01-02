@@ -2,20 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package mobileplanmgmt.presentation.view;
-
-import mobileplanmgmt.presentation.view.mobileplan.CreateMobilePlanView;
+package mobileplanmgmt.presentation.view.mobileplan;
 
 /**
  *
  * @author Comp
  */
-public class MainView extends javax.swing.JFrame {
+public class CreateMobilePlanView extends javax.swing.JFrame {
 
     /**
-     * Creates new form MainView
+     * Creates new form CreateMobilePlanView
      */
-    public MainView() {
+    public CreateMobilePlanView() {
         initComponents();
     }
 
@@ -32,10 +30,10 @@ public class MainView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Create mobile plan");
+        jButton1.setText("Back to main");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                navigateCreateMobilePlan(evt);
+                navigateToMain(evt);
             }
         });
 
@@ -44,28 +42,24 @@ public class MainView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(17, 17, 17)
                 .addComponent(jButton1)
-                .addContainerGap(516, Short.MAX_VALUE))
+                .addContainerGap(284, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(23, 23, 23)
                 .addComponent(jButton1)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addContainerGap(254, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void navigateCreateMobilePlan(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_navigateCreateMobilePlan
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreateMobilePlanView().setVisible(true);
-            }
-        });
-    }//GEN-LAST:event_navigateCreateMobilePlan
+    private void navigateToMain(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_navigateToMain
+        this.setVisible(false);
+    }//GEN-LAST:event_navigateToMain
 
     /**
      * @param args the command line arguments
@@ -84,20 +78,20 @@ public class MainView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateMobilePlanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateMobilePlanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateMobilePlanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateMobilePlanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainView().setVisible(true);
+                new CreateMobilePlanView().setVisible(true);
             }
         });
     }

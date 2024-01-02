@@ -33,4 +33,15 @@ public class MobilePlan implements Serializable {
 
     @Column(unique = true)
     private String name; 
+    
+    private String description;
+    
+    @Column(name = "data_limit")
+    private int dataLimit;
+    
+    @Column(name = "minutes_limit")
+    private int minutesLimit;
+    
+    @Column(name = "monthly_fee")
+    private Double monthlyFee;
 }

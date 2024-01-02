@@ -5,15 +5,16 @@
 package mobileplanmgmt.domain.service;
 
 import java.util.List;
+import mobileplanmgmt.domain.model.Customer;
 
 /**
  *
  * @author Zekiloni
  */
-public interface EntityService <T, K> {
-    T create(T entity);
-    void delete(K entityId);
-    T update(T entity);
-    T getById(K entityId);
-    List<T> getAll();
+public interface CustomerService {
+    Customer create(Customer customerCreate);
+    void delete(Long customerId);
+    Customer update(Customer customer);
+    Customer getById(Long customerId);
+    List<Customer> getAll();
 }
