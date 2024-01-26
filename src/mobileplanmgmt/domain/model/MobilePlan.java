@@ -32,23 +32,26 @@ public class MobilePlan implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String name; 
     
     private String description;
     
-    @Column(name = "DATA_LIMIT")
+    @Column(name = "data_limit")
     private int dataLimit;
     
-    @Column(name = "MINUTES_LIMIT")
+    @Column(name = "minutes_limit")
     private int minutesLimit;
     
-    @Column(name = "MONTHLY_FEE")
+    @Column(name = "monthly_fee")
     private Double monthlyFee;
     
-    @Column(name = "CREATED_AT")
+    @Column(name = "created_at", nullable = false)
     private OffsetDateTime createdAt;
+    
+    @Column(name = "updated_at", nullable = true)
+    private OffsetDateTime updatedAt;
 }

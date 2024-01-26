@@ -7,6 +7,7 @@ package mobileplanmgmt.presentation.controller;
 import java.util.List;
 import mobileplanmgmt.domain.model.MobilePlan;
 import mobileplanmgmt.domain.model.MobilePlanCreate;
+import mobileplanmgmt.domain.service.MobilePlanService;
 import mobileplanmgmt.domain.service.impl.MobilePlanServiceImpl;
 
 /**
@@ -14,7 +15,7 @@ import mobileplanmgmt.domain.service.impl.MobilePlanServiceImpl;
  * @author Zekiloni
  */
 public class MobilePlanController {
-    private MobilePlanServiceImpl mobilePlanService;
+    private MobilePlanService mobilePlanService;
     
     public MobilePlanController() {
         mobilePlanService = new MobilePlanServiceImpl();

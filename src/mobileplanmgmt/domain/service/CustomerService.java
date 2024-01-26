@@ -6,13 +6,14 @@ package mobileplanmgmt.domain.service;
 
 import java.util.List;
 import mobileplanmgmt.domain.model.Customer;
+import mobileplanmgmt.domain.model.CustomerCreate;
 
 /**
  *
  * @author Zekiloni
  */
 public interface CustomerService {
-    Customer create(Customer customerCreate);
+    Customer create(CustomerCreate customerCreate);
     void delete(Long customerId);
     Customer update(Customer customer);
     Customer getById(Long customerId);

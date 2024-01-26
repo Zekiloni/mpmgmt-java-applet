@@ -6,6 +6,7 @@ package mobileplanmgmt.domain.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,7 @@ public class Subscription implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -34,7 +35,9 @@ public class Subscription implements Serializable {
     @JoinColumn(name = "mobile_plan_id")
     private MobilePlan mobilePlan;
     
+    @Column(name = "valid_from", nullable = false)
     private LocalDate validFrom;
     
+    @Column(name = "valid_to", nullable = false)
     private LocalDate validTo;
 }

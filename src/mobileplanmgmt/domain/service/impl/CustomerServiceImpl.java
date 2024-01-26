@@ -4,11 +4,12 @@
  */
 package mobileplanmgmt.domain.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import mobileplanmgmt.domain.model.Customer;
+import mobileplanmgmt.domain.model.CustomerCreate;
 import mobileplanmgmt.domain.service.CustomerService;
 import mobileplanmgmt.infrastructure.persistence.DatabaseOperations;
-import mobileplanmgmt.domain.service.MobilePlanService;
 
 /**
  *
@@ -23,8 +24,18 @@ public class CustomerServiceImpl implements CustomerService {
     }
     
     @Override
-    public Customer create(Customer customer) {
-        return this.databaseOperations.save(customer);
+    public Customer create(CustomerCreate customerCreate) {
+        return this.databaseOperations.save(
+            Customer.builder()
+                .firstName(customerCreate.getFirstName())
+                .lastName(customerCreate.getLastName())
+                .middleName(customerCreate.getMiddleName())
+                .dateOfBirth(customerCreate.getDateOfBirth())
+                .emailAddress(customerCreate.getEmailAddress())
+                .phoneNumber(customerCreate.getPhoneNumber())
+                .createdAt(LocalDateTime.now())
+                .build()
+        );
     }
 
     @Override
