@@ -5,10 +5,14 @@
 package mobileplanmgmt.domain.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,14 +35,25 @@ public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
+    private String firstName;
+    
+    private String middleName;
+    
+    private String lastName;
+    
+    private String emailAddress;
+    
+    private String phoneNumber;
+    
+    private LocalDate dateOfBirth;
+    
+    private LocalDateTime createdAt;
+    
+    private LocalDateTime updatedAt;
+    
+    @OneToMany(mappedBy = "customer")
+    private List<Subscription> subscriptions;
 
     @Override
     public int hashCode() {
@@ -59,10 +74,4 @@ public class Customer implements Serializable {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "mobileplanmgmt.entity.Customer[ id=" + id + " ]";
-    }
-    
 }
