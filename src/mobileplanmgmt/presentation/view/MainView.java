@@ -66,8 +66,23 @@ public class MainView extends javax.swing.JFrame {
         dataLimitLabel = new javax.swing.JLabel();
         minutesLimitLabel = new javax.swing.JLabel();
         monthlyFeeLabel = new javax.swing.JLabel();
-        submitCreateMobilePlan = new javax.swing.JButton();
+        submitCreateMobilePlanButton = new javax.swing.JButton();
         customersPanel = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        firstNameLabel = new javax.swing.JLabel();
+        firstNameInput = new javax.swing.JTextField();
+        lastNameLabel = new javax.swing.JLabel();
+        lastNameInput = new javax.swing.JTextField();
+        middleNameLabel = new javax.swing.JLabel();
+        middleNameInput = new javax.swing.JTextField();
+        dateOfBirthInput = new javax.swing.JTextField();
+        dateOfBirthLabel = new javax.swing.JLabel();
+        emailInput = new javax.swing.JTextField();
+        emailLabel = new javax.swing.JLabel();
+        phoneNumberInput = new javax.swing.JTextField();
+        phoneNumberLabel = new javax.swing.JLabel();
+        submitCustomerCreateButton = new javax.swing.JButton();
         subscriptionsPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -128,10 +143,10 @@ public class MainView extends javax.swing.JFrame {
 
         monthlyFeeLabel.setText("Monthly Fee ($)");
 
-        submitCreateMobilePlan.setText("Create mobile plan");
-        submitCreateMobilePlan.addActionListener(new java.awt.event.ActionListener() {
+        submitCreateMobilePlanButton.setText("Create mobile plan");
+        submitCreateMobilePlanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitCreateMobilePlanActionPerformed(evt);
+                submitCreateMobilePlanButtonActionPerformed(evt);
             }
         });
 
@@ -144,16 +159,14 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(mobilePlansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(submitCreateMobilePlan, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(submitCreateMobilePlanButton, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mobilePlansPanelLayout.createSequentialGroup()
                         .addGroup(mobilePlansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dataLimitInput, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dataLimitLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(mobilePlansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(mobilePlansPanelLayout.createSequentialGroup()
-                                .addComponent(minutesLimitLabel)
-                                .addGap(13, 13, 13))
+                            .addComponent(minutesLimitLabel)
                             .addComponent(minutesLimitInput, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(mobilePlansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,21 +204,130 @@ public class MainView extends javax.swing.JFrame {
                             .addComponent(minutesLimitInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(monthlyFeeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
-                        .addComponent(submitCreateMobilePlan)))
-                .addContainerGap(129, Short.MAX_VALUE))
+                        .addComponent(submitCreateMobilePlanButton)))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Mobile plans", mobilePlansPanel);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "First name", "Last name", "Middle name", "DOB", "Phone No.", "E-mail", "Created at"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+
+        firstNameLabel.setText("First name");
+
+        lastNameLabel.setText("Last name");
+
+        middleNameLabel.setText("Middle name");
+
+        dateOfBirthLabel.setText("Date of birth");
+
+        emailLabel.setText("E-mail");
+
+        phoneNumberLabel.setText("Phone Number");
+
+        submitCustomerCreateButton.setText("Create a customer");
+        submitCustomerCreateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitCustomerCreateButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout customersPanelLayout = new javax.swing.GroupLayout(customersPanel);
         customersPanel.setLayout(customersPanelLayout);
         customersPanelLayout.setHorizontalGroup(
             customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1036, Short.MAX_VALUE)
+            .addGroup(customersPanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(customersPanelLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(customersPanelLayout.createSequentialGroup()
+                                .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dateOfBirthLabel)
+                                    .addComponent(dateOfBirthInput, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(emailLabel)
+                                    .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(customersPanelLayout.createSequentialGroup()
+                                        .addComponent(phoneNumberLabel)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(phoneNumberInput)))
+                            .addGroup(customersPanelLayout.createSequentialGroup()
+                                .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(firstNameLabel)
+                                    .addComponent(firstNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lastNameLabel)
+                                    .addComponent(lastNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(customersPanelLayout.createSequentialGroup()
+                                        .addComponent(middleNameLabel)
+                                        .addGap(0, 49, Short.MAX_VALUE))
+                                    .addComponent(middleNameInput)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customersPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(submitCustomerCreateButton)))
+                .addContainerGap())
         );
         customersPanelLayout.setVerticalGroup(
             customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGroup(customersPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(customersPanelLayout.createSequentialGroup()
+                        .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, customersPanelLayout.createSequentialGroup()
+                                .addComponent(lastNameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lastNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(customersPanelLayout.createSequentialGroup()
+                                .addComponent(firstNameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(firstNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(customersPanelLayout.createSequentialGroup()
+                                .addComponent(middleNameLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(middleNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(customersPanelLayout.createSequentialGroup()
+                                .addComponent(dateOfBirthLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dateOfBirthInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(customersPanelLayout.createSequentialGroup()
+                                .addComponent(emailLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(customersPanelLayout.createSequentialGroup()
+                                .addComponent(phoneNumberLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(phoneNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(submitCustomerCreateButton)))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Customers", customersPanel);
@@ -218,7 +340,7 @@ public class MainView extends javax.swing.JFrame {
         );
         subscriptionsPanelLayout.setVerticalGroup(
             subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 440, Short.MAX_VALUE)
         );
 
         tabbedPanel.addTab("Subscriptions", subscriptionsPanel);
@@ -235,7 +357,7 @@ public class MainView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -259,7 +381,19 @@ public class MainView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_monthlyFeeInputActionPerformed
 
-    private void submitCreateMobilePlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCreateMobilePlanActionPerformed
+    private void submitCustomerCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCustomerCreateButtonActionPerformed
+        ArrayList<Boolean> validations = new ArrayList();
+
+        validations.add(isValidInput(this.firstNameInput, input -> !input.isEmpty()));
+        validations.add(isValidInput(this.lastNameInput, input -> !input.isEmpty()));
+        validations.add(isValidInput(this.emailInput, input -> !input.isEmpty()));
+        validations.add(isValidInput(this.dateOfBirthInput, input -> !input.isEmpty()));
+
+        if (validations.stream().allMatch(b -> b)) {
+        }
+    }//GEN-LAST:event_submitCustomerCreateButtonActionPerformed
+
+    private void submitCreateMobilePlanButtonActionPerformed(java.awt.event.ActionEvent evt) {
         ArrayList<Boolean> validations = new ArrayList();
 
         validations.add(isValidInput(this.mobilePlanNameInput, input -> !input.isEmpty()));
@@ -282,7 +416,7 @@ public class MainView extends javax.swing.JFrame {
             }
 
         }
-    }//GEN-LAST:event_submitCreateMobilePlanActionPerformed
+    }
 
     private void refreshMobilePlansTable() {
         try {
@@ -295,6 +429,7 @@ public class MainView extends javax.swing.JFrame {
                     mobilePlan.getDataLimit(),
                     mobilePlan.getMinutesLimit(),
                     mobilePlan.getMonthlyFee(),
+                    mobilePlan.getActiveSubscriptions(),
                     mobilePlan.getCreatedAt(),
                     mobilePlan.getUpdatedAt()
                 });
@@ -309,7 +444,7 @@ public class MainView extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        //<editor-fold defaultstate="collafirstNameInputpsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
@@ -343,8 +478,20 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JPanel customersPanel;
     private javax.swing.JTextField dataLimitInput;
     private javax.swing.JLabel dataLimitLabel;
+    private javax.swing.JTextField dateOfBirthInput;
+    private javax.swing.JLabel dateOfBirthLabel;
+    private javax.swing.JTextField emailInput;
+    private javax.swing.JLabel emailLabel;
+    private javax.swing.JTextField firstNameInput;
+    private javax.swing.JLabel firstNameLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField lastNameInput;
+    private javax.swing.JLabel lastNameLabel;
+    private javax.swing.JTextField middleNameInput;
+    private javax.swing.JLabel middleNameLabel;
     private javax.swing.JTextField minutesLimitInput;
     private javax.swing.JLabel minutesLimitLabel;
     private javax.swing.JTextArea mobilePlanDescInput;
@@ -355,7 +502,10 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JTable mobilePlansTable;
     private javax.swing.JTextField monthlyFeeInput;
     private javax.swing.JLabel monthlyFeeLabel;
-    private javax.swing.JButton submitCreateMobilePlan;
+    private javax.swing.JTextField phoneNumberInput;
+    private javax.swing.JLabel phoneNumberLabel;
+    private javax.swing.JButton submitCreateMobilePlanButton;
+    private javax.swing.JButton submitCustomerCreateButton;
     private javax.swing.JPanel subscriptionsPanel;
     private javax.swing.JTabbedPane tabbedPanel;
     // End of variables declaration//GEN-END:variables

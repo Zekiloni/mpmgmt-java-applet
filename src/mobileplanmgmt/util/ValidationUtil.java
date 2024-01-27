@@ -5,6 +5,9 @@
 package mobileplanmgmt.util;
 
 import java.awt.Color;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.function.Predicate;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -18,7 +21,7 @@ import lombok.experimental.UtilityClass;
  */
 @UtilityClass
 public class ValidationUtil {
-    
+
     public static void setValidationBorder(JTextField textField, boolean isValid) {
         setValidationBorder((JComponent) textField, isValid);
     }
@@ -34,7 +37,7 @@ public class ValidationUtil {
             component.setBorder(BorderFactory.createLineBorder(Color.RED));
         }
     }
-    
+
     public static boolean isValidInput(JTextField textField, Predicate<String> validationLogic) {
         String input = textField.getText();
         boolean isValid = !input.isEmpty() && validationLogic.test(input);
@@ -54,6 +57,15 @@ public class ValidationUtil {
             int value = Integer.parseInt(input);
             return true;
         } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private static boolean isValidDateFormat(String dateText, String expectedFormat) {
+        try {
+            LocalDate.parse(dateText, DateTimeFormatter.ofPattern(expectedFormat));
+            return true;
+        } catch (DateTimeParseException e) {
             return false;
         }
     }

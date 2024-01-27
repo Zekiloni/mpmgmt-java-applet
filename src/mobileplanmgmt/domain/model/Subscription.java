@@ -40,4 +40,9 @@ public class Subscription implements Serializable {
     
     @Column(name = "valid_to", nullable = false)
     private LocalDate validTo;
+    
+    public boolean isActiveSubscription() {
+        LocalDate now = LocalDate.now();
+        return this.validTo.isAfter(now) || this.validTo.isEqual(now);
+    }
 }
