@@ -15,24 +15,21 @@ import mobileplanmgmt.domain.service.impl.MobilePlanServiceImpl;
  * @author Zekiloni
  */
 public class MobilePlanController {
+
     private MobilePlanService mobilePlanService;
-    
+
     public MobilePlanController() {
         mobilePlanService = new MobilePlanServiceImpl();
     }
-    
+
     public List<MobilePlan> getAllMobilePlans() {
         return this.mobilePlanService.getAll();
     }
-    
+
     public MobilePlan createMobilePlan(MobilePlanCreate mobilePlanCreate) {
-        try { 
-            return mobilePlanService.create(mobilePlanCreate);
-        } catch(RuntimeException exception) {
-            return null;
-        }        
+        return mobilePlanService.create(mobilePlanCreate);
     }
-    
+
     public void deleteMobilePlan(Long mobilePlanId) {
         this.mobilePlanService.delete(mobilePlanId);
     }

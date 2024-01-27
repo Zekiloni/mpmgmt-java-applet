@@ -35,9 +35,10 @@ public class MobilePlan implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "name", unique = true, nullable = false)
     private String name; 
     
+    @Column(name = "description")
     private String description;
     
     @Column(name = "data_limit")

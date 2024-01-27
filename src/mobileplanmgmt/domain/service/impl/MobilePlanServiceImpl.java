@@ -30,6 +30,7 @@ public class MobilePlanServiceImpl implements MobilePlanService {
                 .description(mobilePlanCreate.getDescription())
                 .dataLimit(mobilePlanCreate.getDataLimit())
                 .minutesLimit(mobilePlanCreate.getMinutesLimit())
+                .monthlyFee(mobilePlanCreate.getMonthlyFee())
                 .createdAt(OffsetDateTime.now())
                 .build();
         
