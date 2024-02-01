@@ -22,6 +22,10 @@ public class CustomerController {
         this.customerService = new CustomerServiceImpl();
     }
     
+    public Customer getCustomer(Long customerId) {
+        return this.customerService.getById(customerId);
+    }
+        
     public List<Customer> getAllCustomers() {
         return this.customerService.getAll();
     }

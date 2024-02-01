@@ -1,5 +1,5 @@
 CREATE TABLE mobile_plans (ID BIGINT AUTO_INCREMENT NOT NULL, created_at DATETIME NOT NULL, data_limit INTEGER, description VARCHAR(255), minutes_limit INTEGER, monthly_fee DOUBLE, name VARCHAR(255) NOT NULL UNIQUE, updated_at DATETIME, PRIMARY KEY (ID))
 CREATE TABLE customers (ID BIGINT AUTO_INCREMENT NOT NULL, created_at DATETIME NOT NULL, date_of_birth DATE NOT NULL, email_address VARCHAR(255) NOT NULL, first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, middle_name VARCHAR(255), phone_number VARCHAR(255), updated_at DATETIME, PRIMARY KEY (ID))
-CREATE TABLE SUBSCRIPTION (ID BIGINT AUTO_INCREMENT NOT NULL, valid_from DATE NOT NULL, valid_to DATE NOT NULL, customer_id BIGINT, mobile_plan_id BIGINT, PRIMARY KEY (ID))
-ALTER TABLE SUBSCRIPTION ADD CONSTRAINT FK_SUBSCRIPTION_customer_id FOREIGN KEY (customer_id) REFERENCES customers (ID)
-ALTER TABLE SUBSCRIPTION ADD CONSTRAINT FK_SUBSCRIPTION_mobile_plan_id FOREIGN KEY (mobile_plan_id) REFERENCES mobile_plans (ID)
+CREATE TABLE subscriptions (ID BIGINT AUTO_INCREMENT NOT NULL, valid_from DATE NOT NULL, valid_to DATE NOT NULL, customer_id BIGINT, mobile_plan_id BIGINT, PRIMARY KEY (ID))
+ALTER TABLE subscriptions ADD CONSTRAINT FK_subscriptions_customer_id FOREIGN KEY (customer_id) REFERENCES customers (ID)
+ALTER TABLE subscriptions ADD CONSTRAINT FK_subscriptions_mobile_plan_id FOREIGN KEY (mobile_plan_id) REFERENCES mobile_plans (ID)

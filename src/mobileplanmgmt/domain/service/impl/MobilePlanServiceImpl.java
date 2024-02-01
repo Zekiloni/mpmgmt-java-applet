@@ -49,7 +49,7 @@ public class MobilePlanServiceImpl implements MobilePlanService {
 
     @Override
     public MobilePlan getById(Long mobilePlanId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.databaseOperations.getById(MobilePlan.class, mobilePlanId).orElse(null);
     }
 
     @Override

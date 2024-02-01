@@ -22,6 +22,10 @@ public class MobilePlanController {
         this.mobilePlanService = new MobilePlanServiceImpl();
     }
 
+    public MobilePlan getMobilePlan(Long mobilePlanId) {
+        return this.mobilePlanService.getById(mobilePlanId);
+    }
+
     public List<MobilePlan> getAllMobilePlans() {
         return this.mobilePlanService.getAll();
     }

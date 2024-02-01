@@ -1,5 +1,5 @@
-ALTER TABLE SUBSCRIPTION DROP FOREIGN KEY FK_SUBSCRIPTION_customer_id
-ALTER TABLE SUBSCRIPTION DROP FOREIGN KEY FK_SUBSCRIPTION_mobile_plan_id
+ALTER TABLE subscriptions DROP FOREIGN KEY FK_subscriptions_customer_id
+ALTER TABLE subscriptions DROP FOREIGN KEY FK_subscriptions_mobile_plan_id
 DROP TABLE mobile_plans
 DROP TABLE customers
-DROP TABLE SUBSCRIPTION
+DROP TABLE subscriptions
