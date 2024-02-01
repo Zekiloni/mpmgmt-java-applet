@@ -63,4 +63,8 @@ public class Customer implements Serializable {
     
     @OneToMany(mappedBy = "customer")
     private List<Subscription> subscriptions;
+    
+    public String getFullName() {
+        return String.format("%s %s %s", this.firstName, this.middleName, this.lastName);
+    }
 }

@@ -21,11 +21,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerCreate {
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private String emailAddress;
-    private String phoneNumber;
-    private LocalDate dateOfBirth;
+public class SubscriptionCreate {
+    private Customer customer;
+    private MobilePlan mobilePlan;
+    private LocalDate validFrom;
+    private LocalDate validTo;
 }

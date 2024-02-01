@@ -13,12 +13,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
- * @author Comp
+ * @author Zekiloni
  */
 @Entity
+@Table(name = "subscriptions")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Subscription implements Serializable {
 
     private static final long serialVersionUID = 1L;

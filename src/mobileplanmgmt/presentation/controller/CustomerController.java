@@ -12,14 +12,14 @@ import mobileplanmgmt.domain.service.impl.CustomerServiceImpl;
 
 /**
  *
- * @author Comp
+ * @author Zekiloni
  */
 public class CustomerController {
     
     private CustomerService customerService;
     
     public CustomerController() {
-        customerService = new CustomerServiceImpl();
+        this.customerService = new CustomerServiceImpl();
     }
     
     public List<Customer> getAllCustomers() {
@@ -28,7 +28,7 @@ public class CustomerController {
     
     public Customer createCustomer(CustomerCreate customerCreate) {
         try { 
-            return customerService.create(customerCreate);
+            return this.customerService.create(customerCreate);
         } catch(RuntimeException exception) {
             return null;
         }        

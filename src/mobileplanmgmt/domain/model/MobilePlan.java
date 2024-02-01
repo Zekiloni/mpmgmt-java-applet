@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author Comp
+ * @author Zekiloni
  */
 @Entity
 @Table(name = "mobile_plans")

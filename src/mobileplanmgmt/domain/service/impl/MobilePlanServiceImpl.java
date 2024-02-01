@@ -13,7 +13,7 @@ import mobileplanmgmt.infrastructure.persistence.DatabaseOperations;
 
 /**
  *
- * @author Comp
+ * @author Zekiloni
  */
 public class MobilePlanServiceImpl implements MobilePlanService {
 

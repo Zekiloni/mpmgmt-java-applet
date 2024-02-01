@@ -4,11 +4,16 @@
  */
 package mobileplanmgmt.presentation.view;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import mobileplanmgmt.domain.model.Customer;
+import mobileplanmgmt.domain.model.CustomerCreate;
 import mobileplanmgmt.domain.model.MobilePlan;
 import mobileplanmgmt.domain.model.MobilePlanCreate;
 import mobileplanmgmt.presentation.controller.CustomerController;
@@ -69,21 +74,22 @@ public class MainView extends javax.swing.JFrame {
         submitCreateMobilePlanButton = new javax.swing.JButton();
         customersPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        customersTable = new javax.swing.JTable();
         firstNameLabel = new javax.swing.JLabel();
         firstNameInput = new javax.swing.JTextField();
         lastNameLabel = new javax.swing.JLabel();
         lastNameInput = new javax.swing.JTextField();
         middleNameLabel = new javax.swing.JLabel();
         middleNameInput = new javax.swing.JTextField();
-        dateOfBirthInput = new javax.swing.JTextField();
         dateOfBirthLabel = new javax.swing.JLabel();
         emailInput = new javax.swing.JTextField();
         emailLabel = new javax.swing.JLabel();
         phoneNumberInput = new javax.swing.JTextField();
         phoneNumberLabel = new javax.swing.JLabel();
         submitCustomerCreateButton = new javax.swing.JButton();
+        dateOfBirthInput = new com.toedter.calendar.JCalendar();
         subscriptionsPanel = new javax.swing.JPanel();
+        choice1 = new java.awt.Choice();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -205,12 +211,12 @@ public class MainView extends javax.swing.JFrame {
                             .addComponent(monthlyFeeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addComponent(submitCreateMobilePlanButton)))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Mobile plans", mobilePlansPanel);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        customersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -226,7 +232,7 @@ public class MainView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(customersTable);
 
         firstNameLabel.setText("First name");
 
@@ -254,42 +260,42 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(customersPanelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(customersPanelLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(firstNameLabel)
+                            .addComponent(firstNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lastNameLabel)
+                            .addComponent(lastNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(customersPanelLayout.createSequentialGroup()
-                                .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dateOfBirthLabel)
-                                    .addComponent(dateOfBirthInput, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(emailLabel)
-                                    .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(customersPanelLayout.createSequentialGroup()
-                                        .addComponent(phoneNumberLabel)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(phoneNumberInput)))
+                                .addComponent(middleNameLabel)
+                                .addGap(0, 49, Short.MAX_VALUE))
+                            .addComponent(middleNameInput))
+                        .addContainerGap())
+                    .addGroup(customersPanelLayout.createSequentialGroup()
+                        .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dateOfBirthLabel)
+                            .addComponent(dateOfBirthInput, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customersPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(submitCustomerCreateButton))
                             .addGroup(customersPanelLayout.createSequentialGroup()
+                                .addGap(23, 23, 23)
                                 .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(firstNameLabel)
-                                    .addComponent(firstNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lastNameLabel)
-                                    .addComponent(lastNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(phoneNumberInput)
+                                    .addComponent(emailInput, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(customersPanelLayout.createSequentialGroup()
-                                        .addComponent(middleNameLabel)
-                                        .addGap(0, 49, Short.MAX_VALUE))
-                                    .addComponent(middleNameInput)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customersPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(submitCustomerCreateButton)))
-                .addContainerGap())
+                                        .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(emailLabel)
+                                            .addComponent(phoneNumberLabel))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())))))
         );
         customersPanelLayout.setVerticalGroup(
             customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,7 +318,7 @@ public class MainView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(middleNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(customersPanelLayout.createSequentialGroup()
                                 .addComponent(dateOfBirthLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -320,14 +326,14 @@ public class MainView extends javax.swing.JFrame {
                             .addGroup(customersPanelLayout.createSequentialGroup()
                                 .addComponent(emailLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(customersPanelLayout.createSequentialGroup()
+                                .addComponent(emailInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(phoneNumberLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(phoneNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(submitCustomerCreateButton)))
-                .addContainerGap(180, Short.MAX_VALUE))
+                                .addComponent(phoneNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(submitCustomerCreateButton)))))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Customers", customersPanel);
@@ -336,11 +342,17 @@ public class MainView extends javax.swing.JFrame {
         subscriptionsPanel.setLayout(subscriptionsPanelLayout);
         subscriptionsPanelLayout.setHorizontalGroup(
             subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1036, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, subscriptionsPanelLayout.createSequentialGroup()
+                .addContainerGap(620, Short.MAX_VALUE)
+                .addComponent(choice1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(267, 267, 267))
         );
         subscriptionsPanelLayout.setVerticalGroup(
             subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGroup(subscriptionsPanelLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(choice1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(300, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Subscriptions", subscriptionsPanel);
@@ -387,9 +399,23 @@ public class MainView extends javax.swing.JFrame {
         validations.add(isValidInput(this.firstNameInput, input -> !input.isEmpty()));
         validations.add(isValidInput(this.lastNameInput, input -> !input.isEmpty()));
         validations.add(isValidInput(this.emailInput, input -> !input.isEmpty()));
-        validations.add(isValidInput(this.dateOfBirthInput, input -> !input.isEmpty()));
+
+        Date dobDate = this.dateOfBirthInput.getDate();
 
         if (validations.stream().allMatch(b -> b)) {
+            CustomerCreate customerCreate = CustomerCreate.builder()
+                    .firstName(this.firstNameInput.getText())
+                    .lastName(this.lastNameInput.getText())
+                    .middleName(this.middleNameInput.getText())
+                    .emailAddress(this.emailInput.getText())
+                    .phoneNumber(this.phoneNumberInput.getText())
+                    .dateOfBirth(dobDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+                    .build();
+            
+            Customer customer = this.customerController.createCustomer(customerCreate);
+            if (customer != null) {
+                this.refreshCustomersTable();
+            }
         }
     }//GEN-LAST:event_submitCustomerCreateButtonActionPerformed
 
@@ -412,9 +438,8 @@ public class MainView extends javax.swing.JFrame {
 
             MobilePlan mobilePlan = this.mobilePlanController.createMobilePlan(mobilePlanCreate);
             if (mobilePlan != null) {
-                refreshMobilePlansTable();
+                this.refreshMobilePlansTable();
             }
-
         }
     }
 
@@ -432,6 +457,26 @@ public class MainView extends javax.swing.JFrame {
                     mobilePlan.getActiveSubscriptions(),
                     mobilePlan.getCreatedAt(),
                     mobilePlan.getUpdatedAt()
+                });
+            }
+        } catch (RuntimeException exception) {
+            throw exception;
+        }
+    }
+    
+    private void refreshCustomersTable() {
+        try { 
+            DefaultTableModel tableModel = (DefaultTableModel) this.customersTable.getModel();
+            
+            for (Customer customer : this.customerController.getAllCustomers()) {
+                tableModel.addRow(new Object[]{
+                    customer.getFirstName(),
+                    customer.getLastName(),
+                    customer.getMiddleName(),
+                    customer.getDateOfBirth(),
+                    customer.getPhoneNumber(),
+                    customer.getEmailAddress(),
+                    customer.getCreatedAt()
                 });
             }
         } catch (RuntimeException exception) {
@@ -475,10 +520,12 @@ public class MainView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Choice choice1;
     private javax.swing.JPanel customersPanel;
+    private javax.swing.JTable customersTable;
     private javax.swing.JTextField dataLimitInput;
     private javax.swing.JLabel dataLimitLabel;
-    private javax.swing.JTextField dateOfBirthInput;
+    private com.toedter.calendar.JCalendar dateOfBirthInput;
     private javax.swing.JLabel dateOfBirthLabel;
     private javax.swing.JTextField emailInput;
     private javax.swing.JLabel emailLabel;
@@ -487,7 +534,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField lastNameInput;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField middleNameInput;
