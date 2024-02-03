@@ -9,6 +9,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -16,6 +17,7 @@ import mobileplanmgmt.domain.model.Customer;
 import mobileplanmgmt.domain.model.CustomerCreate;
 import mobileplanmgmt.domain.model.MobilePlan;
 import mobileplanmgmt.domain.model.MobilePlanCreate;
+import mobileplanmgmt.domain.model.Subscription;
 import mobileplanmgmt.domain.model.SubscriptionCreate;
 import mobileplanmgmt.presentation.controller.CustomerController;
 import mobileplanmgmt.presentation.controller.MobilePlanController;
@@ -36,6 +38,10 @@ public class MainView extends javax.swing.JFrame {
 
     private SubscriptionController subscriptionController;
 
+    private LocalDate subscriptionValidFrom = LocalDate.now();
+
+    private LocalDate subscriptionValidTo = LocalDate.now();
+
     /**
      * Creates new form MainView
      */
@@ -43,15 +49,16 @@ public class MainView extends javax.swing.JFrame {
         this.mobilePlanController = new MobilePlanController();
         this.customerController = new CustomerController();
         this.subscriptionController = new SubscriptionController();
-        
+
         this.initComponents();
 
         this.refreshCustomersTable();
         this.refreshMobilePlansTable();
         this.refreshSubscriptionsTable();
-        
+
         this.refreshCustomerChoices();
         this.refreshMobilePlansChoices();
+        this.refreshSubscriptionsTable();
     }
 
     /**
@@ -96,8 +103,8 @@ public class MainView extends javax.swing.JFrame {
         submitCustomerCreateButton = new javax.swing.JButton();
         dateOfBirthInput = new com.toedter.calendar.JCalendar();
         subscriptionsPanel = new javax.swing.JPanel();
-        customerChoiceInput = new java.awt.Choice();
         mobilePlanChoiceLabel = new javax.swing.JLabel();
+        customerChoiceInput = new java.awt.Choice();
         customerChoiceLabel = new javax.swing.JLabel();
         mobilePlanChoiceInput = new java.awt.Choice();
         validToInput = new com.toedter.calendar.JCalendar();
@@ -105,6 +112,8 @@ public class MainView extends javax.swing.JFrame {
         validFromLabel1 = new javax.swing.JLabel();
         validFromInput = new com.toedter.calendar.JCalendar();
         submitCreateSubscriptionButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        subscriptionsTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -203,10 +212,9 @@ public class MainView extends javax.swing.JFrame {
         mobilePlansPanelLayout.setVerticalGroup(
             mobilePlansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mobilePlansPanelLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(mobilePlansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(mobilePlansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mobilePlansPanelLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
                         .addComponent(mobilePlanNameLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mobilePlanNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,8 +233,11 @@ public class MainView extends javax.swing.JFrame {
                             .addComponent(minutesLimitInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(monthlyFeeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
-                        .addComponent(submitCreateMobilePlanButton)))
-                .addContainerGap(202, Short.MAX_VALUE))
+                        .addComponent(submitCreateMobilePlanButton))
+                    .addGroup(mobilePlansPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(391, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Mobile plans", mobilePlansPanel);
@@ -273,8 +284,8 @@ public class MainView extends javax.swing.JFrame {
         customersPanelLayout.setHorizontalGroup(
             customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(customersPanelLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(customersPanelLayout.createSequentialGroup()
@@ -315,10 +326,9 @@ public class MainView extends javax.swing.JFrame {
         customersPanelLayout.setVerticalGroup(
             customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(customersPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
                 .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(customersPanelLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
                         .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, customersPanelLayout.createSequentialGroup()
                                 .addComponent(lastNameLabel)
@@ -347,8 +357,11 @@ public class MainView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(phoneNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(submitCustomerCreateButton)))))
-                .addContainerGap(228, Short.MAX_VALUE))
+                                .addComponent(submitCustomerCreateButton))))
+                    .addGroup(customersPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(426, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Customers", customersPanel);
@@ -357,9 +370,21 @@ public class MainView extends javax.swing.JFrame {
 
         customerChoiceLabel.setText("Select a Customer");
 
+        validToInput.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                validToInputPropertyChange(evt);
+            }
+        });
+
         validToLabel.setText("Valid to date");
 
         validFromLabel1.setText("Valid from date");
+
+        validFromInput.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                validFromInputPropertyChange(evt);
+            }
+        });
 
         submitCreateSubscriptionButton.setText("Create a Subscription");
         submitCreateSubscriptionButton.addActionListener(new java.awt.event.ActionListener() {
@@ -368,12 +393,34 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
+        subscriptionsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Customer", "Mobile Plan", "Valid From", "Valid Until", "Is Active"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(subscriptionsTable);
+
         javax.swing.GroupLayout subscriptionsPanelLayout = new javax.swing.GroupLayout(subscriptionsPanel);
         subscriptionsPanel.setLayout(subscriptionsPanelLayout);
         subscriptionsPanelLayout.setHorizontalGroup(
             subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, subscriptionsPanelLayout.createSequentialGroup()
-                .addContainerGap(587, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(customerChoiceLabel)
                     .addComponent(customerChoiceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -381,35 +428,44 @@ public class MainView extends javax.swing.JFrame {
                     .addComponent(validFromInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(submitCreateSubscriptionButton)
                     .addComponent(mobilePlanChoiceLabel)
                     .addComponent(mobilePlanChoiceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(validToLabel)
-                    .addComponent(validToInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53))
+                    .addGroup(subscriptionsPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(submitCreateSubscriptionButton)
+                            .addGroup(subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(validToLabel)
+                                .addComponent(validToInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         subscriptionsPanelLayout.setVerticalGroup(
             subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(subscriptionsPanelLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(customerChoiceLabel)
-                    .addComponent(mobilePlanChoiceLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(customerChoiceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mobilePlanChoiceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(validToLabel)
-                    .addComponent(validFromLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addGroup(subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(validFromInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(validToInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                    .addGroup(subscriptionsPanelLayout.createSequentialGroup()
+                        .addGroup(subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(subscriptionsPanelLayout.createSequentialGroup()
+                                .addComponent(customerChoiceLabel)
+                                .addGap(1, 1, 1)
+                                .addComponent(customerChoiceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(subscriptionsPanelLayout.createSequentialGroup()
+                                .addComponent(mobilePlanChoiceLabel)
+                                .addGap(1, 1, 1)
+                                .addComponent(mobilePlanChoiceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(validFromLabel1)
+                            .addComponent(validToLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(subscriptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(validFromInput, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(validToInput, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(submitCreateSubscriptionButton)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(371, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Subscriptions", subscriptionsPanel);
@@ -468,7 +524,7 @@ public class MainView extends javax.swing.JFrame {
                     .phoneNumber(this.phoneNumberInput.getText())
                     .dateOfBirth(dobDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
                     .build();
-            
+
             Customer customer = this.customerController.createCustomer(customerCreate);
             if (customer != null) {
                 this.refreshCustomersTable();
@@ -480,21 +536,35 @@ public class MainView extends javax.swing.JFrame {
     private void submitCreateSubscriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCreateSubscriptionButtonActionPerformed
         MobilePlan mobilePlan = this.mobilePlanController.getMobilePlan(Long.parseLong(this.mobilePlanChoiceInput.getSelectedItem()));
         Customer customer = this.customerController.getCustomer(Long.parseLong(this.customerChoiceInput.getSelectedItem()));
-        
-        LocalDate validFrom = this.validFromInput.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate validTo = this.validFromInput.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         if (mobilePlan != null && customer != null) {
             SubscriptionCreate subscriptionCreate = SubscriptionCreate.builder()
                     .mobilePlan(mobilePlan)
                     .customer(customer)
-                    .validFrom(validFrom)
-                    .validTo(validTo)
+                    .validFrom(subscriptionValidFrom)
+                    .validTo(subscriptionValidTo)
                     .build();
-            
+
             this.subscriptionController.createSubscription(subscriptionCreate);
+            this.refreshSubscriptionsTable();
+            this.refreshMobilePlansTable();
         }
     }//GEN-LAST:event_submitCreateSubscriptionButtonActionPerformed
+
+    private void validFromInputPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_validFromInputPropertyChange
+        if (evt.getNewValue() instanceof GregorianCalendar) {
+            GregorianCalendar calendar = (GregorianCalendar) evt.getNewValue();
+            System.out.print("its gregorian");
+            this.subscriptionValidFrom = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+    }//GEN-LAST:event_validFromInputPropertyChange
+
+    private void validToInputPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_validToInputPropertyChange
+        if (evt.getNewValue() instanceof GregorianCalendar) {
+            GregorianCalendar calendar = (GregorianCalendar) evt.getNewValue();
+            this.subscriptionValidTo = calendar.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+    }//GEN-LAST:event_validToInputPropertyChange
 
     private void submitCreateMobilePlanButtonActionPerformed(java.awt.event.ActionEvent evt) {
         ArrayList<Boolean> validations = new ArrayList();
@@ -524,6 +594,7 @@ public class MainView extends javax.swing.JFrame {
     private void refreshMobilePlansTable() {
         try {
             DefaultTableModel tableModel = (DefaultTableModel) this.mobilePlansTable.getModel();
+            tableModel.setRowCount(0);
 
             for (MobilePlan mobilePlan : this.mobilePlanController.getAllMobilePlans()) {
                 tableModel.addRow(new Object[]{
@@ -542,11 +613,12 @@ public class MainView extends javax.swing.JFrame {
             throw exception;
         }
     }
-    
+
     private void refreshCustomersTable() {
-        try { 
+        try {
             DefaultTableModel tableModel = (DefaultTableModel) this.customersTable.getModel();
-            
+            tableModel.setRowCount(0);
+
             for (Customer customer : this.customerController.getAllCustomers()) {
                 tableModel.addRow(new Object[]{
                     customer.getId(),
@@ -561,6 +633,22 @@ public class MainView extends javax.swing.JFrame {
             }
         } catch (RuntimeException exception) {
             throw exception;
+        }
+    }
+
+    private void refreshSubscriptionsTable() {
+        DefaultTableModel tableModel = (DefaultTableModel) this.subscriptionsTable.getModel();
+        tableModel.setRowCount(0);
+
+        for (Subscription subscription : this.subscriptionController.getAllSubscriptions()) {
+            tableModel.addRow(new Object[]{
+                subscription.getId(),
+                subscription.getCustomer().getFullName(),
+                subscription.getMobilePlan().getName(),
+                subscription.getValidFrom(),
+                subscription.getValidTo(),
+                subscription.getIsActive()
+            });
         }
     }
 
@@ -615,6 +703,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField lastNameInput;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField middleNameInput;
@@ -637,6 +726,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton submitCreateSubscriptionButton;
     private javax.swing.JButton submitCustomerCreateButton;
     private javax.swing.JPanel subscriptionsPanel;
+    private javax.swing.JTable subscriptionsTable;
     private javax.swing.JTabbedPane tabbedPanel;
     private com.toedter.calendar.JCalendar validFromInput;
     private javax.swing.JLabel validFromLabel1;
@@ -644,11 +734,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel validToLabel;
     // End of variables declaration//GEN-END:variables
 
-    private void refreshSubscriptionsTable() {
-    }
-
     private void refreshCustomerChoices() {
-     for (Customer customer : this.customerController.getAllCustomers()) {
+        for (Customer customer : this.customerController.getAllCustomers()) {
             this.customerChoiceInput.add(customer.getId().toString());
         }
     }

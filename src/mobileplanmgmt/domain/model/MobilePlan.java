@@ -63,7 +63,7 @@ public class MobilePlan implements Serializable {
     
     public long getActiveSubscriptions() {
         return this.subscriptions.stream()
-                .filter(Subscription::isActiveSubscription)
+                .filter(Subscription::getIsActive)
                 .count();
     }
 }
